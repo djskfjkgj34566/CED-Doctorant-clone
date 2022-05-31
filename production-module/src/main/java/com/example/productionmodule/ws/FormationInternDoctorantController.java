@@ -46,7 +46,8 @@ public class FormationInternDoctorantController {
                 formation.getId(),
                 formation.getUserId(),
                 formation.getFichierId(),
-                formation.getFormationInterneAdminId()
+                formation.getFormationInterneAdminId(),
+                "suivie"
         ) ;
         return service.update(formationInterneDoctorant, formation.getFile());
     }

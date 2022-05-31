@@ -14,6 +14,7 @@ public class FormationInternDoctorantParams {
     private Long fichierId;
     private MultipartFile file;
     private Long formationInterneAdminId;
+    private String statusFormation;
 
 
 }
