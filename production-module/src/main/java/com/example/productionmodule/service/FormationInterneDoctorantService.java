@@ -22,13 +22,17 @@ public class FormationInterneDoctorantService {
     private FormationInterneDoctorantRepo repo;
     @Autowired
     private FeignService fileService;
+    @Autowired
+    private FormationInterneAdminService formationIAService;
 
     public int save(FormationInternDoctorantParams param){
         FormationInterneDoctorant formation = new FormationInterneDoctorant(
                 null,
                 param.getUserId(),
                 null,
-                param.getFormationInterneAdminId()
+                param.getFormationInterneAdminId(),
+                //param.getStatusFormation()
+                "encours"
         );
         if(param.getFile()!=null){
         MultipartFile file = param.getFile();
@@ -56,6 +60,9 @@ public class FormationInterneDoctorantService {
                 FichierDto fichier = fileService.getFichier(formation.getFichierId()).getBody();
                 formation.setFichier(fichier);
             }
+            FormationInterneAdmin formationIA = formationIAService.findById(formation.getFormationInterneAdminId());
+            System.out.println(formationIA.toString());
+            formation.setFormationInterneAdmin(formationIA);
             newFormations.add(formation);
         }
         return newFormations;
@@ -69,6 +76,9 @@ public class FormationInterneDoctorantService {
                 FichierDto fichier = fileService.getFichier(formation.getFichierId()).getBody();
                 formation.setFichier(fichier);
             }
+            FormationInterneAdmin formationIA = formationIAService.findById(formation.getFormationInterneAdminId());
+            System.out.println(formationIA.toString());
+            formation.setFormationInterneAdmin(formationIA);
             newFormations.add(formation);
         }
         return newFormations;
@@ -79,6 +89,8 @@ public class FormationInterneDoctorantService {
         if(formation.getFichierId()!=null){
         FichierDto fichier = fileService.getFichier(formation.getFichierId()).getBody();
         FichierUpdateDto fichierDto = new FichierUpdateDto(formation.getFichierId(), fichier.getName(), file);
+        FormationInterneDoctorant fid = new FormationInterneDoctorant();
+        fid.setStatusFormation("suivie");
         fileService.update(fichierDto);}
         else{
             FichierDto fichier = fileService.save(file);
