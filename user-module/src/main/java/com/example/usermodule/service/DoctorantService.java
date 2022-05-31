@@ -8,6 +8,7 @@ import com.example.usermodule.fiegn.PreinscriptionFeign;
 import com.example.usermodule.model.Authority;
 import com.example.usermodule.model.Doctorant;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -110,7 +111,16 @@ public class DoctorantService {
     public Doctorant findById(Long id) {
         return repository.findById(id).get();
     }
-/*
+
+    public Long countData() {
+        return repository.countNumberOfData();
+    }
+
+    public String getSpecialite(Long id){
+        return repository.findById(id).get().getSpecialite();
+    }
+
+    /*
     public AuthenticationResponseDto authentication(AuthenticationRequestDto requestDto, HttpServletRequest request) {
         AuthenticationResponseDto response = new AuthenticationResponseDto();
         Doctorant doctorant = repository.findByEmail(requestDto.getEmail()).get();

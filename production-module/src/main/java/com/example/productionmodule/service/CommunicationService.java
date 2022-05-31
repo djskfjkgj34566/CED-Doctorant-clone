@@ -29,8 +29,7 @@ public class CommunicationService {
     private CommunicationRepo repository;
     @Autowired
     private FeignService fileService;
-    @Autowired
-    private ServletContext servletContext;
+
 
 
     public int save(SaveParam param) throws IOException, ParseException {

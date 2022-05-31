@@ -4,6 +4,7 @@ import com.ced.preinscriptionmodule.model.Preinscription;
 import com.ced.preinscriptionmodule.repository.PreinscriptionRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -40,5 +41,9 @@ public class PreinscriptionService {
 
     public Preinscription getByCin(String cin){
         return preinscriptionRepo.findByCin(cin);
+    }
+
+    public Long countData() {
+        return preinscriptionRepo.countNumberOfData();
     }
 }

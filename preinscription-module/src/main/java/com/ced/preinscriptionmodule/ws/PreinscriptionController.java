@@ -37,4 +37,9 @@ public class PreinscriptionController {
         System.out.println("method update in preinscription ms rest called successfully");
         return preinscriptionService.update(preinscription);
     }
+
+    @GetMapping("/get/count")
+    public Long countData() {
+        return preinscriptionService.countData();
+    }
 }

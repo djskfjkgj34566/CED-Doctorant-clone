@@ -1,4 +1,4 @@
-package com.example.chatmodule;
+package com.ced.soutenancemodule;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,10 +14,10 @@ import java.util.Collections;
 import java.util.List;
 
 @SpringBootApplication
-public class ChatModuleApplication {
+public class SoutenanceModuleApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ChatModuleApplication.class, args);
+        SpringApplication.run(SoutenanceModuleApplication.class, args);
     }
 
     @Bean

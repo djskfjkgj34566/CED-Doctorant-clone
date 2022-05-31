@@ -85,4 +85,14 @@ public class DoctorantController {
     public Doctorant findById(@PathVariable Long id) {
         return service.findById(id);
     }
+
+    @GetMapping("/get/count")
+    public Long countData() {
+        System.out.println(service.countData());
+        return service.countData();
+    }
+    @GetMapping("/get/specialite/{id}")
+    public String getSpecialite(@PathVariable Long id) {
+        return service.getSpecialite(id);
+    }
 }

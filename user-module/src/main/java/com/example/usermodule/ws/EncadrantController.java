@@ -24,7 +24,17 @@ public class EncadrantController {
     }
 
     @GetMapping("/id/{id}")
-    public Optional<Encadrant> findById(@PathVariable Long id) {
-        return encadrantService.findById(id);
+    public Encadrant findById(@PathVariable Long id) {
+        return encadrantService.findById(id).get();
+    }
+
+    @GetMapping("/get/count")
+    public Long countData() {
+        return encadrantService.countData();
+    }
+
+    @GetMapping("/find/encadrant/specialite/{specialite}")
+    public List<Encadrant> findEncadrantsBySpecialite( @PathVariable String specialite) {
+        return encadrantService.findEncadrantsBySpecialite(specialite);
     }
 }

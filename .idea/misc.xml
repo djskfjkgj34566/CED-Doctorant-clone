@@ -11,6 +11,7 @@
         <option value="$PROJECT_DIR$/production-module/pom.xml" />
         <option value="$PROJECT_DIR$/eureka-server/pom.xml" />
         <option value="$PROJECT_DIR$/chat-module/pom.xml" />
+        <option value="$PROJECT_DIR$/soutenance-module/pom.xml" />
       </list>
     </option>
   </component>

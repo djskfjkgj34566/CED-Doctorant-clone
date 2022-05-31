@@ -13,6 +13,8 @@
         <module name="user-module" />
         <module name="CED" />
         <module name="file-module" />
+        <module name="soutenance-module" />
+        <module name="CED-platform-Back-End" />
         <module name="eureka-server" />
         <module name="cite-innovation-project" />
       </profile>
@@ -25,6 +27,7 @@
       <module name="file-module" options="-parameters" />
       <module name="preinscription-module" options="-parameters" />
       <module name="production-module" options="-parameters" />
+      <module name="soutenance-module" options="-parameters" />
       <module name="user-module" options="-parameters" />
     </option>
   </component>
