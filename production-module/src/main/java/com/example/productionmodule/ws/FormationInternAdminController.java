@@ -24,9 +24,9 @@ public class FormationInternAdminController {
     }
 
     @ResponseBody
-    @GetMapping("/")
-    public List<FormationInterneAdmin> getAll(){
-        return service.findAll();
+    @GetMapping("/userId/{userId}")
+    public List<FormationInterneAdmin> getAll(@PathVariable Long userId){
+        return service.findAllNotSelected(userId);
     }
 
     @ResponseBody

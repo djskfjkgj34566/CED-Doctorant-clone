@@ -6,15 +6,18 @@ import com.example.productionmodule.dto.FormationInternAdminParams;
 import com.example.productionmodule.feign.FeignService;
 import com.example.productionmodule.model.Formation;
 import com.example.productionmodule.model.FormationInterneAdmin;
+import com.example.productionmodule.model.FormationInterneDoctorant;
 import com.example.productionmodule.repository.FormationInterneAdminRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.PostConstruct;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class FormationInterneAdminService {
@@ -23,12 +26,26 @@ public class FormationInterneAdminService {
     private FormationInterneAdminRepo repo;
     @Autowired
     private FeignService fileService;
+    @Autowired
+    private FormationInterneDoctorantService formationInterneDoctorantService;
+
+    @PostConstruct
+    public void init() {
+        formationInterneDoctorantService.setFormationIAService(this);
+    }
 
 
-    public List<FormationInterneAdmin> findAll(){
+    public List<FormationInterneAdmin> findAllNotSelected(Long userId){
         List<FormationInterneAdmin> formations  = repo.findAll();
+        List<FormationInterneDoctorant> formationInterneDoctorantList = formationInterneDoctorantService.findAllByUser(userId);
+        List<FormationInterneAdmin> formationsChoisie  = new ArrayList<>();
+        List<FormationInterneAdmin> result = new ArrayList<>();
+        for (FormationInterneDoctorant formation:formationInterneDoctorantList) {
+            formationsChoisie.add(formation.getFormationInterneAdmin());
+        }
+        result = formations.stream().filter(formation->!formationsChoisie.contains(formation)).collect(Collectors.toList());
         List<FormationInterneAdmin> newFormations = new ArrayList<>();
-        for (FormationInterneAdmin formation: formations){
+        for (FormationInterneAdmin formation: result){
             FichierDto fichier = fileService.getFichier(formation.getFichierId()).getBody();
             formation.setFichier(fichier);
             newFormations.add(formation);

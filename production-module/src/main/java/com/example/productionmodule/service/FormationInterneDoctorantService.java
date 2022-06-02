@@ -22,8 +22,17 @@ public class FormationInterneDoctorantService {
     private FormationInterneDoctorantRepo repo;
     @Autowired
     private FeignService fileService;
-    @Autowired
+
     private FormationInterneAdminService formationIAService;
+
+    
+    public void setFormationIAService(FormationInterneAdminService formationIAService) {
+        this.formationIAService = formationIAService;
+    }
+
+    public FormationInterneAdminService getFormationIAService() {
+        return formationIAService;
+    }
 
     public int save(FormationInternDoctorantParams param){
         FormationInterneDoctorant formation = new FormationInterneDoctorant(

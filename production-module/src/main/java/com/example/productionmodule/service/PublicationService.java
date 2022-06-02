@@ -27,6 +27,7 @@ public class PublicationService {
     private FeignService fileService;
 
     public int save(PublicationSaveParam param) throws IOException, ParseException {
+        System.out.println("le fichier associé anec la publication est : "+param.getFile().toString());
         if(!param.getFile().isEmpty()) {
             Publication publication = new Publication(
                     null,
