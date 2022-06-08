@@ -15,6 +15,7 @@ public class Rapporteur {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private int indice;
     private String nomComplet;
     private String grade;
     private String specialite;

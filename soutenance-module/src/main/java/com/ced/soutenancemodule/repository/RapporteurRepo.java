@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface RapporteurRepo extends JpaRepository<Rapporteur, Long> {
 
-    Long countByDoctorantId(Long id);
+    int countByDoctorantId(Long id);
     List<Rapporteur> findByDoctorantId(Long id);
 
 }

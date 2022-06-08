@@ -4,9 +4,11 @@ import com.ced.soutenancemodule.model.Rapporteur;
 import com.ced.soutenancemodule.service.RapporteurService;
 import net.sf.jasperreports.engine.JRException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -27,12 +29,12 @@ public class RapporteurController {
     }
 
     @GetMapping("/count/rapporteur/{doctorantId}")
-    public Long countByDoctorantId(@PathVariable Long doctorantId) {
+    public int countByDoctorantId(@PathVariable Long doctorantId) {
         return service.countByDoctorantId(doctorantId);
     }
 
     @GetMapping("/export/rapporteurs/{doctorantId}")
-    public String exportRapporteursDoc(@PathVariable Long doctorantId) throws JRException, FileNotFoundException {
+    public ResponseEntity<byte[]> exportRapporteursDoc(@PathVariable Long doctorantId) throws JRException, IOException {
         return service.exportReport(doctorantId);
     }
 }

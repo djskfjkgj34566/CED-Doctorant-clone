@@ -34,6 +34,17 @@ public class FormationInterneAdminService {
         formationInterneDoctorantService.setFormationIAService(this);
     }
 
+    public List<FormationInterneAdmin> findAll(){
+        List<FormationInterneAdmin> formations  = repo.findAll();
+
+        List<FormationInterneAdmin> newFormations = new ArrayList<>();
+        for (FormationInterneAdmin formation: formations){
+            FichierDto fichier = fileService.getFichier(formation.getFichierId()).getBody();
+            formation.setFichier(fichier);
+            newFormations.add(formation);
+        }
+        return newFormations;
+    }
 
     public List<FormationInterneAdmin> findAllNotSelected(Long userId){
         List<FormationInterneAdmin> formations  = repo.findAll();

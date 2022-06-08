@@ -25,7 +25,7 @@ public class FormationInterneDoctorantService {
 
     private FormationInterneAdminService formationIAService;
 
-    
+
     public void setFormationIAService(FormationInterneAdminService formationIAService) {
         this.formationIAService = formationIAService;
     }
