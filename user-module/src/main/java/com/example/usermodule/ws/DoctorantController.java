@@ -44,6 +44,11 @@ public class DoctorantController {
         return new ResponseEntity<>(doctorant, HttpStatus.CONFLICT);
     }
 
+    @PostMapping("/admin/rejet")
+    public int rejeter(@RequestBody PreinscriptionDto preinscription){
+        return service.rejeter(preinscription);
+    }
+
     @PostMapping(value = "/user/set", consumes = {"application/json"})
     public int setPassword(@RequestBody PasswordDto passwordDto){
         return service.setDoctorantPassword(passwordDto);

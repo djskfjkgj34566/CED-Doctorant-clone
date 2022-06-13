@@ -77,8 +77,17 @@ public class DoctorantService {
         return hexString.toString();
     }
 
+    public int rejeter(PreinscriptionDto preinscription) {
+        preinscription.setStatus("rejete");
+        if (preinscriptionFeign.update(preinscription) == 1) {
+            sendSimpleMessage(preinscription.getEmail(), "Rejet de la candidature", "Votre candidature à été rejeter à près son traitement");
+            return 1;
+        }
+        return -1;
+    }
+
     public Doctorant save(PreinscriptionDto preinscrition) throws NoSuchAlgorithmException {
-        preinscrition.setStatus("validé");
+        preinscrition.setStatus("accepte");
         if(preinscriptionFeign.update(preinscrition)==1) {
             String originalString = preinscrition.getCin()+preinscrition.getEmail();
             MessageDigest digest = MessageDigest.getInstance("SHA-256");

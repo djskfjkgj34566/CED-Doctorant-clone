@@ -10,4 +10,5 @@ public interface RFDRepo extends JpaRepository<ResponsableFD, Long> {
 
     ResponsableFD findByCin(String cin);
     ResponsableFD findByVkey(String vkey);
+    boolean existsByCin(String cin);
 }

@@ -14,4 +14,7 @@ public interface EncadrantRepo extends JpaRepository<Encadrant, Long> {
     public Long countNumberOfData();
 
     public List<Encadrant> findEncadrantsBySpecialite(String specialite);
+    Encadrant findByVkey(String vkey);
+    Encadrant findByCin(String cin);
+    public boolean existsByCin(String cin);
 }

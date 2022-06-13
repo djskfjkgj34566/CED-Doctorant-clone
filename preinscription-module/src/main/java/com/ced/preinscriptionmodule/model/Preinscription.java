@@ -30,5 +30,5 @@ public class Preinscription {
     private String specialite;
     private String cin;
     private String date_preinscription = formatter.format(new Date()) ;
-    private String status = "non valide";
+    private String status = "non traite";
 }
