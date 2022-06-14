@@ -12,6 +12,5 @@ import javax.persistence.Entity;
 public class ResponsableFD extends User{
 
     private String code;
-    private String vkey;
 
 }

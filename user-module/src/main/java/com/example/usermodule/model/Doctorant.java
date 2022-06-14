@@ -19,7 +19,6 @@ public class Doctorant extends User{
     private String address;
     private String specialite;
     private String date_preinscription;
-    private String vkey;
 
 
 }

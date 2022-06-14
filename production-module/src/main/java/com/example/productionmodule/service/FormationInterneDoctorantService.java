@@ -86,7 +86,6 @@ public class FormationInterneDoctorantService {
                 formation.setFichier(fichier);
             }
             FormationInterneAdmin formationIA = formationIAService.findById(formation.getFormationInterneAdminId());
-            System.out.println(formationIA.toString());
             formation.setFormationInterneAdmin(formationIA);
             newFormations.add(formation);
         }

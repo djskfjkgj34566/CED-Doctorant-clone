@@ -13,6 +13,5 @@ import javax.persistence.Entity;
 public class ResponsableCED extends User{
 
     private String code;
-    private String vkey;
 
 }

@@ -3,10 +3,9 @@ package com.example.usermodule.ws;
 import com.example.usermodule.model.User;
 import com.example.usermodule.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 @RestController
@@ -21,5 +20,8 @@ public class UserController {
         return userService.findAll();
     }
 
-
+    @PostMapping("/reset/password")
+    public int sendPageUpdatePassword(@RequestBody String email) throws NoSuchAlgorithmException {
+        return userService.sendPageUpdatePassword(email);
+    }
 }
