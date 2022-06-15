@@ -44,6 +44,11 @@ public class DoctorantController {
         return new ResponseEntity<>(doctorant, HttpStatus.CONFLICT);
     }
 
+    @PostMapping("/reset/password")
+    public int sendPageUpdatePassword(@RequestBody String email) throws NoSuchAlgorithmException {
+        return service.sendPageUpdatePassword(email);
+    }
+
     @PostMapping("/admin/rejet")
     public int rejeter(@RequestBody PreinscriptionDto preinscription){
         return service.rejeter(preinscription);
@@ -54,9 +59,13 @@ public class DoctorantController {
         return service.setDoctorantPassword(passwordDto);
     }
 
+    @PostMapping(value = "/user/update/passwd", consumes = {"application/json"})
+    public int updatePassword(@RequestBody PasswordDto passwordDto){
+        return service.updateDoctorantPassword(passwordDto);
+    }
+
     @GetMapping("/user/{vkey}")
     public ResponseEntity<Doctorant> getByVkey(@PathVariable String vkey){
-
         Doctorant doctorant = service.getByVkey(vkey);
         if(doctorant!=null) return new ResponseEntity<>(doctorant, HttpStatus.OK);
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);

@@ -1,5 +1,6 @@
 package com.example.usermodule.Repository;
 
+import com.example.usermodule.model.Doctorant;
 import com.example.usermodule.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -9,5 +10,6 @@ public interface UserRepo extends JpaRepository<User, Long> {
 
     Optional<User> findByEmail(String email);
     boolean existsByEmail(String email);
-
+    User findByVkey(String vkey);
+    User findByCin(String cin);
 }
