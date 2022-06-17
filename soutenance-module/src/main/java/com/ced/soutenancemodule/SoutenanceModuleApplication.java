@@ -1,20 +1,27 @@
 package com.ced.soutenancemodule;
 
+import com.ced.soutenancemodule.service.EmailSenderService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.event.EventListener;
 import org.springframework.core.Ordered;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
+import javax.mail.MessagingException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 @SpringBootApplication
 public class SoutenanceModuleApplication {
+    @Autowired
+    private EmailSenderService service;
 
     public static void main(String[] args) {
         SpringApplication.run(SoutenanceModuleApplication.class, args);
@@ -37,5 +44,20 @@ public class SoutenanceModuleApplication {
         bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
         return bean;
     }
+
+   /* @EventListener(ApplicationReadyEvent.class)
+    public void triggerMail() throws MessagingException {
+
+        /*service.sendEmailWithAttachment("spring.email.to@gmail.com",
+                "This is Email Body with Attachment...",
+                "This email has attachment",
+                "C:\\Users\\shabb\\Pictures\\c.gif");
+
+        service.sendSimpleEmail(
+                "spring.email.to@gmail.com",
+                "This is Email Body with Attachment...",
+                "This email has attachment"
+        );
+    }*/
 
 }

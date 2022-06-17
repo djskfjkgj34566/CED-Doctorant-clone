@@ -17,4 +17,6 @@ public interface FormationInterneSuivieRepo extends JpaRepository<FormationInter
 
     List<FormationInterneSuivie> findAllByUserId(Long userId);
 
+    Long countNumberOfDataByUserId(Long userId);
+
 }

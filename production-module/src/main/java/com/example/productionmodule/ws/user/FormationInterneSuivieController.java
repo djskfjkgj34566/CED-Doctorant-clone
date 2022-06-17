@@ -68,4 +68,9 @@ public class FormationInterneSuivieController {
     public Long countAll() {
         return service.countAll();
     }
+
+    @GetMapping("/get/count/{userId}")
+    public Long countAllByUser(@PathVariable Long userId) {
+        return service.countAllByUser(userId);
+    }
 }

@@ -15,5 +15,6 @@ public interface CommunicationRepo extends JpaRepository<Communication, Long> {
     public List<Communication> findAllByUserId(Long userId);
     @Query("select count(c) from Communication c")
     public Long countNumberOfData();
+    Long countNumberOfDataByUserId(Long userId);
 
 }

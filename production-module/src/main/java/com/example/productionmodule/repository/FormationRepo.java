@@ -16,4 +16,6 @@ public interface FormationRepo extends JpaRepository<Formation, Long> {
     @Query("select count(c) from Formation c")
     public Long countNumberOfData();
 
+    Long countNumberOfDataByUserId(Long userId);
+
 }
