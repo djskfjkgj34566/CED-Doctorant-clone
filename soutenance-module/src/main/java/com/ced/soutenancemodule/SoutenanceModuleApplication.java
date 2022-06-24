@@ -1,30 +1,38 @@
 package com.ced.soutenancemodule;
 
 import com.ced.soutenancemodule.service.EmailSenderService;
+import com.ced.soutenancemodule.service.EmailSenderService1;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.event.EventListener;
 import org.springframework.core.Ordered;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
-import javax.mail.MessagingException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 @SpringBootApplication
-public class SoutenanceModuleApplication {
+public class SoutenanceModuleApplication  implements CommandLineRunner {
+    /*@Autowired
+    private EmailSenderService1 service;*/
     @Autowired
-    private EmailSenderService service;
+    private EmailSenderService emailSendService;
 
     public static void main(String[] args) {
         SpringApplication.run(SoutenanceModuleApplication.class, args);
+    }
+
+    @Override
+    public void run(String args[])
+    {
+        //emailSendService.sendEMail("gofresnel@gmail.com", "TBS", "Tech Blog Station");
+        //emailSendService.sendPreConfiguredMail("Tech Blog Station");
     }
 
     @Bean
@@ -44,6 +52,8 @@ public class SoutenanceModuleApplication {
         bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
         return bean;
     }
+
+
 
    /* @EventListener(ApplicationReadyEvent.class)
     public void triggerMail() throws MessagingException {

@@ -1,6 +1,8 @@
 package com.ced.soutenancemodule.controller;
 
+import com.ced.soutenancemodule.model.EmailMessage;
 import com.ced.soutenancemodule.model.Rapporteur;
+import com.ced.soutenancemodule.service.EmailSenderService;
 import com.ced.soutenancemodule.service.RapporteurService;
 import net.sf.jasperreports.engine.JRException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,9 @@ public class RapporteurController {
 
     @Autowired
     RapporteurService service;
+    @Autowired
+    private EmailSenderService emailSenderService;
+
 
     @PostMapping("/")
     public int save(@RequestBody Rapporteur rapporteur){
@@ -36,5 +41,15 @@ public class RapporteurController {
     @GetMapping("/export/rapporteurs/{doctorantId}")
     public ResponseEntity<byte[]> exportRapporteursDoc(@PathVariable Long doctorantId) throws JRException, IOException {
         return service.exportReport(doctorantId);
+    }
+
+
+    @PostMapping("/send-mail")
+    public String sendM(@RequestBody String to, String subject, String text){
+        /*EmailMessage emailMessage1 =  emailSenderService.EnvoieMessage(email);*/
+        //emailSenderService.sendSimpleMessage(emailMessage.getTo(), emailMessage.getSubject(), emailMessage.getMessage());
+        //emailSenderService.sendEMail(emailMessage.getTo(), emailMessage.getSubject(), emailMessage.getMessage());
+        emailSenderService.sendEMail(to,subject,text);
+        return "Message envoyé";
     }
 }
