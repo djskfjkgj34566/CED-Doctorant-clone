@@ -1,13 +1,13 @@
 package com.example.usermodule.ws;
 
+import com.example.usermodule.dto.PasswordDto;
 import com.example.usermodule.model.Encadrant;
+import com.example.usermodule.model.ResponsableCED;
 import com.example.usermodule.service.EncadrantService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +17,16 @@ public class EncadrantController {
 
     @Autowired
     private EncadrantService encadrantService;
+
+    @PostMapping("/")
+    public int save(@RequestBody Encadrant encadrant) throws NoSuchAlgorithmException {
+        return encadrantService.save(encadrant);
+    }
+
+    @GetMapping("/vkey/{vkey}")
+    public Encadrant getByVkey(@PathVariable String vkey) {
+        return encadrantService.findByVkey(vkey);
+    }
 
     @GetMapping("/")
     public List<Encadrant> findAll() {
@@ -36,5 +46,10 @@ public class EncadrantController {
     @GetMapping("/find/encadrant/specialite/{specialite}")
     public List<Encadrant> findEncadrantsBySpecialite( @PathVariable String specialite) {
         return encadrantService.findEncadrantsBySpecialite(specialite);
+    }
+
+    @PostMapping("/set/password")
+    public int setRCEDPassword(@RequestBody PasswordDto passwordDto) {
+        return encadrantService.setEncadrantPassword(passwordDto);
     }
 }

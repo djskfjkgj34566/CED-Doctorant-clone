@@ -21,6 +21,7 @@ public class User {
     private String prenom;
     private String cin;
     private String password;
+    private String vkey;
     @Value("${some.key:false}")
     private boolean enabled;
     @OneToMany

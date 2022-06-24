@@ -15,11 +15,10 @@ import java.util.List;
 @Data
 public class Doctorant extends User{
 
-    //private int niveau;
+    private int niveau;
     private String address;
     private String specialite;
     private String date_preinscription;
-    private String vkey;
 
 
 }

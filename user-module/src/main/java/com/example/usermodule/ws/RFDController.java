@@ -20,7 +20,7 @@ public class RFDController {
     private RFDService rfdService;
 
     @PostMapping("/")
-    public ResponseEntity<ResponsableFD> save(@RequestBody ResponsableFD rfd) throws NoSuchAlgorithmException {
+    public ResponseEntity<Integer> save(@RequestBody ResponsableFD rfd) throws NoSuchAlgorithmException {
         return new ResponseEntity<>(rfdService.save(rfd), HttpStatus.OK);
     }
 

@@ -56,7 +56,8 @@ public class RFDService {
 
 
 
-    public ResponsableFD save(ResponsableFD rfd) throws NoSuchAlgorithmException {
+    public int save(ResponsableFD rfd) throws NoSuchAlgorithmException {
+        if(rfdRepo.existsByCin(rfd.getCin())) return -1;
         String originalString = rfd.getCin()+rfd.getEmail();
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
         byte[] encodedhash = digest.digest(originalString.getBytes(StandardCharsets.UTF_8));
@@ -67,8 +68,8 @@ public class RFDService {
         authorities.add(auth);
         rfd.setAuthorities(authorities);
         rfdRepo.save(rfd);
-        sendSimpleMessage(rfd.getEmail(), "Compte créer avec succès", "Veuillez définir un mot de passe\n Veuillez clicquer sur le lien suivant pour créer un mot de passe pour votre compte :\nhttp://localhost:3006/setpassword/"+vkey);
-        return rfd;
+        sendSimpleMessage(rfd.getEmail(), "Compte créer avec succès", "Veuillez définir un mot de passe\n Veuillez clicquer sur le lien suivant pour créer un mot de passe pour votre compte :\nhttp://localhost:3006/rfd/setpassword/"+vkey);
+        return 1;
     }
 
     private static String bytesToHex(byte[] hash) {

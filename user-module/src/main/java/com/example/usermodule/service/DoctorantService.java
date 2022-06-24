@@ -7,6 +7,7 @@ import com.example.usermodule.dto.PreinscriptionDto;
 import com.example.usermodule.fiegn.PreinscriptionFeign;
 import com.example.usermodule.model.Authority;
 import com.example.usermodule.model.Doctorant;
+import com.example.usermodule.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.mail.SimpleMailMessage;
@@ -46,6 +47,20 @@ public class DoctorantService {
         return -2;
     }
 
+
+    public int sendPageUpdatePassword(String email) throws NoSuchAlgorithmException {
+        if(!repository.existsByEmail(email)) return -1;
+        Doctorant d = repository.findByEmail(email);
+        String vkey = d.getVkey();
+        String to = email;
+        String subject = "Réinitialisation de mot de passe";
+        String text = "Vueillez cliquer sur le lien suivant pour réinitialiser votre mot de passe :\n " +
+                "http://localhost:3000/user/update/password/"+vkey;
+        sendSimpleMessage(to, subject, text);
+        return 1;
+    }
+
+
     public int update(Doctorant doctorant){
         if(doctorant.getId()==null || doctorant==null) return -1;
         repository.save(doctorant);
@@ -77,8 +92,17 @@ public class DoctorantService {
         return hexString.toString();
     }
 
+    public int rejeter(PreinscriptionDto preinscription) {
+        preinscription.setStatus("rejete");
+        if (preinscriptionFeign.update(preinscription) == 1) {
+            sendSimpleMessage(preinscription.getEmail(), "Rejet de la candidature", "Votre candidature à été rejeter à près son traitement");
+            return 1;
+        }
+        return -1;
+    }
+
     public Doctorant save(PreinscriptionDto preinscrition) throws NoSuchAlgorithmException {
-        preinscrition.setStatus("validé");
+        preinscrition.setStatus("accepte");
         if(preinscriptionFeign.update(preinscrition)==1) {
             String originalString = preinscrition.getCin()+preinscrition.getEmail();
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
@@ -118,6 +142,13 @@ public class DoctorantService {
 
     public String getSpecialite(Long id){
         return repository.findById(id).get().getSpecialite();
+    }
+
+    public int updateDoctorantPassword(PasswordDto passwordDto) {
+        Doctorant doctorant = repository.findByCin(passwordDto.getCin());
+        String pw_hash = passwordEncoder.encode(passwordDto.getPassword());
+        doctorant.setPassword(pw_hash);
+        return update(doctorant);
     }
 
     /*

@@ -14,7 +14,6 @@ public class Encadrant extends User{
 
     private String code;
     private String specialite;
-    private String vkey;
 
 
 }
