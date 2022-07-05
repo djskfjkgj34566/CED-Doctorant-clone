@@ -2,9 +2,7 @@ package com.example.productionmodule.ws;
 
 import com.example.productionmodule.dto.FormationSaveParam;
 import com.example.productionmodule.model.Formation;
-import com.example.productionmodule.model.Publication;
 import com.example.productionmodule.service.FormationService;
-import com.netflix.discovery.converters.Auto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

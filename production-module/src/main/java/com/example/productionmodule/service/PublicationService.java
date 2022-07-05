@@ -76,6 +76,13 @@ public class PublicationService {
         publication.setFichier(fichier);
         return publication;
     }
+    /*
+    public Publication  getOneByIdd(Long id){
+        Publication publication = (Publication) repository.findOneById(id);
+        /*FichierDto fichier = fileService.getFichier(publication.getFichierId()).getBody();
+        publication.setFichier(fichier);*/
+        /*return publication;
+    }*/
 
     public List<Publication> getAllByUserId(Long userId){
         List<Publication> publications = repository.findAllByUserId(userId);
@@ -110,7 +117,7 @@ public class PublicationService {
         return repository.countNumberOfData();
     }
 
-    public Long countAllByUser(Long userId) {
+    public int countAllByUser(Long userId) {
         return repository.countNumberOfDataByUserId(userId);
     }
 }

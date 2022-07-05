@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.time.LocalDateTime;
+
 @AllArgsConstructor @Data @NoArgsConstructor
 public class PublicationSaveParam {
 
@@ -22,5 +24,14 @@ public class PublicationSaveParam {
     @JsonProperty("file")
     private MultipartFile file;
     private Long userId;
+/*
+    @Data @AllArgsConstructor @NoArgsConstructor
+    public static class Comment {
+        private Long userId;
+        private String username;
+        private String text;
+        private LocalDateTime timestamp;
 
+    }
+    */
 }

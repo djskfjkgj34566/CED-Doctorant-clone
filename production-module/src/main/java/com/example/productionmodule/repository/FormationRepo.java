@@ -4,6 +4,7 @@ import com.example.productionmodule.model.Communication;
 import com.example.productionmodule.model.Formation;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,6 +17,8 @@ public interface FormationRepo extends JpaRepository<Formation, Long> {
     @Query("select count(c) from Formation c")
     public Long countNumberOfData();
 
-    Long countNumberOfDataByUserId(Long userId);
+    @Query("select count(c) from Formation c\n" +
+            "where  c.userId=:userId")
+    Long countNumberOfDataByUserId(@Param("userId") Long userId);
 
 }

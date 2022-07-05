@@ -1,6 +1,7 @@
 package com.example.usermodule.ws;
 
 import com.example.usermodule.dto.PasswordDto;
+import com.example.usermodule.dto.PasswordDto2;
 import com.example.usermodule.model.Doctorant;
 import com.example.usermodule.model.User;
 import com.example.usermodule.service.UserService;
@@ -32,6 +33,11 @@ public class UserController {
     @PostMapping(value = "/update/passwd", consumes = {"application/json"})
     public int updatePassword(@RequestBody PasswordDto passwordDto){
         return userService.updateUserPassword(passwordDto);
+    }
+
+    @PostMapping(value = "/update/passwdByUser", consumes = {"application/json"})
+    public int updatePasswordByUser(@RequestBody PasswordDto2 passwordDto2){
+        return userService.updateUserPasswordByUser(passwordDto2);
     }
 
     @GetMapping("/vkey/{vkey}")

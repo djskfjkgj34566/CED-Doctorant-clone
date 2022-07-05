@@ -49,7 +49,7 @@ public class EncadrantService {
         authorities.add(auth);
         encadrant.setAuthorities(authorities);
         encadrantRepo.save(encadrant);
-        sendSimpleMessage(encadrant.getEmail(), "Compte créer avec succès", "Veuillez définir un mot de passe\n Veuillez clicquer sur le lien suivant pour créer un mot de passe pour votre compte :\nhttp://localhost:3000/encadrant/setpassword/"+vkey);
+        sendSimpleMessage(encadrant.getEmail(), "Compte crée avec succès", "Veuillez définir un mot de passe\n Veuillez clicquer sur le lien suivant pour créer un mot de passe pour votre compte :\nhttp://localhost:3000/encadrant/setpassword/"+vkey);
         return 1;
     }
     public List<Encadrant> findAll() {
