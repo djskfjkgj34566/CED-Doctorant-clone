@@ -117,4 +117,8 @@ public class FormationInterneSuivieService {
     public Long countAll() {
         return repo.countNumberOfData();
     }
+
+    public Long countAllByUser(Long userId) {
+        return repo.countNumberOfDataByUserId(userId);
+    }
 }

@@ -135,4 +135,8 @@ public class CommunicationService {
     public Long countAll() {
         return repository.countNumberOfData();
     }
+
+    public Long countAllByUser(Long userId) {
+        return repository.countNumberOfDataByUserId(userId);
+    }
 }

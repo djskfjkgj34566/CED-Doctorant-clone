@@ -18,4 +18,5 @@ public interface PublicationRepo extends JpaRepository<Publication, Long> {
     @Query("select count(c) from Publication c")
     public Long countNumberOfData();
 
+    Long countNumberOfDataByUserId(Long userId);
 }

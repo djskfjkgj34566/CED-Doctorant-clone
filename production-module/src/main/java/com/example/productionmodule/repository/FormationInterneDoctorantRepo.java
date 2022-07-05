@@ -14,5 +14,7 @@ public interface FormationInterneDoctorantRepo extends JpaRepository<FormationIn
     @Query("select count(c) from FormationInterneDoctorant c")
     public Long countNumberOfData();
 
+    Long countNumberOfDataByUserId(Long userId);
+
 
 }

@@ -109,4 +109,8 @@ public class PublicationService {
     public Long countAll() {
         return repository.countNumberOfData();
     }
+
+    public Long countAllByUser(Long userId) {
+        return repository.countNumberOfDataByUserId(userId);
+    }
 }
