@@ -1,6 +1,7 @@
 package com.example.usermodule.ws;
 
 import com.example.usermodule.dto.PasswordDto;
+import com.example.usermodule.dto.PasswordDto2;
 import com.example.usermodule.model.Doctorant;
 import com.example.usermodule.model.User;
 import com.example.usermodule.service.UserService;
@@ -24,7 +25,6 @@ public class UserController {
         return userService.findAll();
     }
 
-
     @GetMapping("/reset/password/{email}")
     public int sendPageUpdatePassword(@PathVariable String email) throws NoSuchAlgorithmException {
         return userService.sendPageUpdatePassword(email);
@@ -35,6 +35,11 @@ public class UserController {
         return userService.updateUserPassword(passwordDto);
     }
 
+    @PostMapping(value = "/update/passwdByUser", consumes = {"application/json"})
+    public int updatePasswordByUser(@RequestBody PasswordDto2 passwordDto2){
+        return userService.updateUserPasswordByUser(passwordDto2);
+    }
+
     @GetMapping("/vkey/{vkey}")
     public ResponseEntity<User> getByVkey(@PathVariable String vkey){
         User user = userService.getByVkey(vkey);
@@ -42,4 +47,3 @@ public class UserController {
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 }
-

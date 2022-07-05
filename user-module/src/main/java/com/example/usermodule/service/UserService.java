@@ -2,6 +2,7 @@ package com.example.usermodule.service;
 
 import com.example.usermodule.Repository.UserRepo;
 import com.example.usermodule.dto.PasswordDto;
+import com.example.usermodule.dto.PasswordDto2;
 import com.example.usermodule.model.Doctorant;
 import com.example.usermodule.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -79,6 +81,20 @@ public class UserService {
         String pw_hash = passwordEncoder.encode(passwordDto.getPassword());
         user.setPassword(pw_hash);
         return update(user);
+    }
+
+    public int updateUserPasswordByUser(PasswordDto2 passwordDto2) {
+        User user = userRepo.findUserById(passwordDto2.getId());
+        String pw_hash = passwordEncoder.encode(passwordDto2.getOldPassWord());
+
+        if(user.getPassword().equals(pw_hash)){
+            String new_pw_hash = passwordEncoder.encode(passwordDto2.getNewPassWord());
+            user.setPassword(new_pw_hash);
+            return update(user);
+        }
+
+        return -1;
+
     }
 
     public int update(User user){

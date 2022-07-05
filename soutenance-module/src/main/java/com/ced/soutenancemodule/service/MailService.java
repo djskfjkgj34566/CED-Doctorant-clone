@@ -49,7 +49,11 @@ public class MailService {
 		helper.setText(
 				"Bonjour Chers Professeurs !"
 						+"\n\n Nous vous envoyons  ce message car vous avez été selectionne comme rapporteurs"
-						+ "\n\n Please find the attached document below.");
+						+ "\n\n Please find the attached document below."
+						+ "\n\n http://localhost:8083/api/v1/ms-file/binaire/e452cff1-1b7c-4b31-9b6d-09416ebbcd33-Capture.png"
+						+ "\n\n http://localhost:8083/api/v1/ms-file/binaire/4ffc3f9f-2b8f-48c8-a1d2-589b9244218c-Chap3_Série2.pdf"
+						+ "\n\n http://localhost:8083/api/v1/ms-file/binaire/da842f27-0593-4bdc-af4d-38897f507037-doc.rar");
+
 		String aaa="Attachmentt.pdf";
 		ClassPathResource classPathResource1 = new ClassPathResource(aaa);
 		ClassPathResource classPathResource = new ClassPathResource("Attachment.pdf");

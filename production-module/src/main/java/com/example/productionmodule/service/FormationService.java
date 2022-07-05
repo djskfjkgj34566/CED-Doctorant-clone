@@ -3,11 +3,8 @@ package com.example.productionmodule.service;
 import com.example.productionmodule.dto.FichierDto;
 import com.example.productionmodule.dto.FichierUpdateDto;
 import com.example.productionmodule.dto.FormationSaveParam;
-import com.example.productionmodule.dto.SaveParam;
 import com.example.productionmodule.feign.FeignService;
-import com.example.productionmodule.model.Communication;
 import com.example.productionmodule.model.Formation;
-import com.example.productionmodule.model.Publication;
 import com.example.productionmodule.repository.FormationRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +14,6 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Service

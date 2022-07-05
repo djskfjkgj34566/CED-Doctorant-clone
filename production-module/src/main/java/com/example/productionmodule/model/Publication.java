@@ -1,14 +1,12 @@
 package com.example.productionmodule.model;
 
-import com.example.productionmodule.dto.FichierDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data @AllArgsConstructor @NoArgsConstructor
@@ -22,6 +20,20 @@ public class Publication extends Production {
     private String auteurs;
     private String BDindexee;
     private String category;
+
+     /*private List<Comment> comments = new ArrayList<>();
+
+   @Data
+    @AllArgsConstructor
+    public static class Comment {
+        private Long userId;
+        private String username;
+        private String text;
+        private LocalDateTime timestamp;
+
+        public Comment(String name, String text, LocalDateTime now) {
+        }
+    }*/
 
     public Publication(String titre, String anne, String vIpages, String nomCRScientifique, String auteurs, String BDindexee, String category, Long documentId, Long userId) {
         super(null, userId, documentId);
