@@ -8,13 +8,18 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config) {
-        config.enableSimpleBroker("/queue/", "/topic/");
-        config.setApplicationDestinationPrefixes("/app");
+        /*config.enableStompBrokerRelay("/queue/", "/topic/")
+                .setUserDestinationBroadcast("/topic/unresolved.user.dest")
+                .setUserRegistryBroadcast("/topic/registry.broadcast")
+                .setRelayHost(relayHost)
+                .setRelayPort(relayPort);
+        config.setApplicationDestinationPrefixes("/chatroom");*/
+
     }
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/stompwebsocket").withSockJS();
+        registry.addEndpoint("/ws").withSockJS();
     }
 
 }

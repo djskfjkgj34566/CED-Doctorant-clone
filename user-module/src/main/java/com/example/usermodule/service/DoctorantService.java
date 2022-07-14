@@ -122,7 +122,7 @@ public class DoctorantService {
             authorities.add(auth);
             docteur.setAuthorities(authorities);
             repository.save(docteur);
-            sendSimpleMessage(preinscrition.getEmail(), "Admition de la préinscription", "votre préinscription est validée\n Veuillez clicquer sur le lien suivant pour créer un mot de passe pour votre compte :\nhttp://localhost:3000/setpassword/"+vkey);
+            sendSimpleMessage(preinscrition.getEmail(), "Admission de la préinscription", "votre préinscription est validée\n Veuillez clicquer sur le lien suivant pour créer un mot de passe pour votre compte :\nhttp://localhost:3000/setpassword/"+vkey);
             return docteur;
         }
             return null;

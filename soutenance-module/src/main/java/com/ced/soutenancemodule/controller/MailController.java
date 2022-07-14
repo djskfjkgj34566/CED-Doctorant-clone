@@ -1,12 +1,14 @@
 package com.ced.soutenancemodule.controller;
 
+import com.ced.soutenancemodule.dto.MailDto;
 import com.ced.soutenancemodule.model.User;
 import com.ced.soutenancemodule.service.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mail.MailException;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.mail.MessagingException;
 
@@ -16,6 +18,7 @@ public class MailController {
 
 	@Autowired
 	private MailService notificationService;
+
 
 	@Autowired
 	private User user;
@@ -41,10 +44,10 @@ public class MailController {
 
 	@RequestMapping("send-mail-attachment")
 	public String sendWithAttachment(@ModelAttribute User user) throws MessagingException {
-	//User user1 = new User();
-	user.setEmailAddress(user.getEmailAddress());
-	user.setEmailAddress2(user.getEmailAddress2());
-	user.setSujet(user.getSujet());
+		//User user1 = new User();
+		user.setEmailAddress(user.getEmailAddress());
+		user.setEmailAddress2(user.getEmailAddress2());
+		user.setSujet(user.getSujet());
 		user.setFirstName("bill");
 
 		//user.setEmailAddress("gofresnel@gmail.com"); //Receiver's email address
@@ -60,5 +63,13 @@ public class MailController {
 			System.out.println(mailException);
 		}
 		return "Congratulations! Your mail has been send to the user.";
+	}
+
+	@PostMapping("/send/documents/these")
+	public ResponseEntity<?> sendMailWithUploadedAttachments(@ModelAttribute MailDto mail){
+		if(notificationService.sendEmailWithUploadedAttachement(mail.getSubject(), mail.getMessage(), mail.getToEmailAddress(), mail.getFiles())==1){
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+		return new ResponseEntity<>(HttpStatus.CONFLICT);
 	}
 }
