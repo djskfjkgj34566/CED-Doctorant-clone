@@ -37,7 +37,7 @@ public class FormationInterneAdminService {
     public List<FormationInterneAdmin> findAll(){
         List<FormationInterneAdmin> formations  = repo.findAll();
 
-        List<FormationInterneAdmin> newFormations = new ArrayList<>();
+       List<FormationInterneAdmin> newFormations = new ArrayList<>();
         for (FormationInterneAdmin formation: formations){
             FichierDto fichier = fileService.getFichier(formation.getFichierId()).getBody();
             formation.setFichier(fichier);

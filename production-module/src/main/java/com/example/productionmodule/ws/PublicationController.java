@@ -30,7 +30,7 @@ public class PublicationController {
 
 
     @PostMapping("/")
-    public int save(@RequestBody PublicationSaveParam param) throws IOException, ParseException {
+    public int save(@ModelAttribute PublicationSaveParam param) throws IOException, ParseException {
         System.out.println("l'objet file est le suivant : " + param.toString());
         return service.save(param);
     }
